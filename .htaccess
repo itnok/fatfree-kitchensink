@@ -1,0 +1,43 @@
+#
+#   Configure some PHP parameters
+#
+
+php_flag    safe_mode           Off
+
+php_value   session.auto_start  0
+
+
+
+#
+#   Set PHP memory limit
+#
+
+php_value   memory_limit        64M
+
+
+
+#
+#   Set web application mode
+#
+#       - development   ( DEBUG active!  )
+#       - production    ( NO ERROR shown )
+#
+
+SetEnv      APPMODE             development
+
+
+
+#
+#   URL rewriter
+#
+
+RewriteEngine   On
+RewriteBase     /
+
+RewriteCond     %{REQUEST_URI}      \.ini$
+RewriteRule     \.ini$              -           [R=404]
+
+RewriteCond     %{REQUEST_FILENAME} !-l
+RewriteCond     %{REQUEST_FILENAME} !-f
+RewriteCond     %{REQUEST_FILENAME} !-d
+RewriteRule     ^(.*)$              index.php   [L,QSA]

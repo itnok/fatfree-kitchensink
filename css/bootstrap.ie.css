@@ -1,0 +1,36 @@
+.img-rounded            { behavior: url( "/pie/PIE.htc" ) }
+.img-circle             { behavior: url( "/pie/PIE.htc" ) }
+.table-bordered         { behavior: url( "/pie/PIE.htc" ) }
+select,
+textarea,
+input,
+code,
+pre                     { behavior: url( "/pie/PIE.htc" ) }
+.input-group-addon      { behavior: url( "/pie/PIE.htc" ) }
+.btn                    { behavior: url( "/pie/PIE.htc" ) }
+.dropdown-menu          { behavior: url( "/pie/PIE.htc" ) }
+.panel                  { behavior: url( "/pie/PIE.htc" ) }
+.well                   { behavior: url( "/pie/PIE.htc" ) }
+.nav-tabs > li > a      { behavior: url( "/pie/PIE.htc" ) }
+.nav-pills > li > a     { behavior: url( "/pie/PIE.htc" ) }
+.navbar                 { behavior: url( "/pie/PIE.htc" ) }
+.navbar-nav > li > a    { behavior: url( "/pie/PIE.htc" ) }
+.navbar-toggle          { behavior: url( "/pie/PIE.htc" ) }
+.navbar-toggle .icon-bar{ behavior: url( "/pie/PIE.htc" ) }
+.breadcrumb             { behavior: url( "/pie/PIE.htc" ) }
+.pagination             { behavior: url( "/pie/PIE.htc" ) }
+.pager li > a,
+.pager li > span        { behavior: url( "/pie/PIE.htc" ) }
+.modal-content          { behavior: url( "/pie/PIE.htc" ) }
+.tooltip-inner          { behavior: url( "/pie/PIE.htc" ) }
+.popover                { behavior: url( "/pie/PIE.htc" ) }
+.popover-title          { behavior: url( "/pie/PIE.htc" ) }
+.alert                  { behavior: url( "/pie/PIE.htc" ) }
+.thumbnail,
+.img-thumbnail          { behavior: url( "/pie/PIE.htc" ) }
+.label                  { behavior: url( "/pie/PIE.htc" ) }
+.badge                  { behavior: url( "/pie/PIE.htc" ) }
+.progress               { behavior: url( "/pie/PIE.htc" ) }
+.accordian-group        { behavior: url( "/pie/PIE.htc" ) }
+.carousel-indicators li { behavior: url( "/pie/PIE.htc" ) }
+.jumbotron              { behavior: url( "/pie/PIE.htc" ) }

@@ -1,0 +1,141 @@
+<?php $f3 = \Base::instance(); ?>
+<!DOCTYPE html>
+<html lang="<?= $f3->get( 'lang' ) ?>">
+<head>
+    <meta charset="UTF-8">
+
+    <title><?= $appName . ' :: ' . $ctrlName ?></title>
+    <meta name="viewport"    content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author"      content="<?= AUTHOR ?>">
+    <!-- Le styles -->
+	<?php
+		
+		//
+		//	Concatenate all the stylesheets in the $cssLibs array
+		//	BUT ONLY IF we are in PRODUCTION
+		//
+		//	In DEBUG mode declare a <link> directive for each file
+		//
+		//	The ORDER DO IS IMPORTANT!!!
+		//
+
+		$cssLibs = array(
+			'bootstrap-2.3.2.min.css',
+			'font-awesome-4.0.0.min.css',
+			'layout.css',
+		);
+	
+		if( DEBUG ) {
+			foreach( $cssLibs as $css ) {
+				echo '<link rel="stylesheet" type="text/css" href="' . WEB_DIR . 'css/' . $css . '" />' . "\n";
+			}
+		} else {
+			$cssList = '';
+			foreach( $cssLibs as $css ) {
+				$cssList .= ( empty( $cssList ) ? $css : ',' . $css );
+			}
+			echo '<link rel="stylesheet" type="text/css" href="' . WEB_DIR . 'minify/css?f=' . $cssList . '" />' . "\n";
+		}
+	?>
+    <!-- Better CSS support for Bootstrap on IE -->
+    <!--[if lte IE 9]>
+        <script type="text/javascript" src="<?= WEB_DIR ?>css/bootstrap.ie.css"></script>
+    <![endif]-->
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+        <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+	<?php
+		
+		//
+		//	Concatenate all the libraries in the $jsLibs array
+		//	BUT ONLY IF we are in PRODUCTION
+		//
+		//	In DEBUG mode declare a <script> directive for each file
+		//
+		//	The ORDER IS IMPORTANT
+		//
+
+		$jsLibs = array(
+			'jquery-1.10.2.min.js',
+			'bootstrap-2.3.2.min.js',
+		);
+	
+		if( DEBUG ) {
+			foreach( $jsLibs as $js ) {
+				echo '<script type="text/javascript" src="' . WEB_DIR .'lib/js/' . $js . '"></script>' . "\n";
+			}
+		} else {
+			$jsList = '';
+			foreach( $jsLibs as $js ) {
+				$jsList .= ( empty( $jsList ) ? $js : ',' . $js );
+			}
+			echo '<script type="text/javascript" src="' . WEB_DIR .'minify/js?f=' . $jsList . '"></script>' . "\n";
+		}
+	?>
+	<?php if( isset( $jsInclude ) ) { foreach( $jsInclude as $js ) { ?>
+		<script type="text/javascript" src="<?php echo WEB_DIR . $js ?>"></script>
+	<?php } } ?>
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<?= WEB_DIR ?>img/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?= WEB_DIR ?>img/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"   href="<?= WEB_DIR ?>img/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed"                 href="<?= WEB_DIR ?>img/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon"                                href="<?= WEB_DIR ?>img/ico/favicon.png">
+</head>
+
+<body data-pagepath="<?= WEB_DIR ?>">
+<!--[if lt IE 7]>
+<div style='border: 1px solid #F7941D; background: #FEEFDA; text-align: center; clear: both; height: 75px; position: relative;'><div style='position: absolute; right: 3px; top: 3px; font-family: courier new; font-weight: bold;'><a href='#' onclick='javascript:this.parentNode.parentNode.style.display="none"; return false;'><img src='http://www.ie6nomore.com/files/theme/ie6nomore-cornerx.jpg' style='border: none;' alt='Close this notice'/></a></div><div style='width: 640px; margin: 0 auto; text-align: left; padding: 0; overflow: hidden; color: black;'><div style='width: 75px; float: left;'><img src='http://www.ie6nomore.com/files/theme/ie6nomore-warning.jpg' alt='Warning!'/></div><div style='width: 275px; float: left; font-family: Arial, sans-serif;'><div style='font-size: 14px; font-weight: bold; margin-top: 12px;'>Stai usando un browser obsoleto</div><div style='font-size: 12px; margin-top: 6px; line-height: 12px;'>Per poter navigare su questo sito, per cortesia passa ad un browser più moderno.</div></div><div style='width: 75px; float: left;'><a href='http://www.mozilla-europe.org/it/' target='_blank'><img src='http://www.ie6nomore.com/files/theme/ie6nomore-firefox.jpg' style='border: none;' alt='Get Firefox 3.5'/></a></div><div style='width: 75px; float: left;'><a href='http://www.microsoft.com/downloads/details.aspx?FamilyID=341c2ad5-8c3d-4347-8c03-08cdecd8852b&DisplayLang=it' target='_blank'><img src='http://www.ie6nomore.com/files/theme/ie6nomore-ie8.jpg' style='border: none;' alt='Get Internet Explorer 8'/></a></div><div style='width: 73px; float: left;'><a href='http://www.apple.com/it/safari/download/' target='_blank'><img src='http://www.ie6nomore.com/files/theme/ie6nomore-safari.jpg' style='border: none;' alt='Get Safari 4'/></a></div><div style='float: left;'><a href='http://www.google.com/chrome?hl=it' target='_blank'><img src='http://www.ie6nomore.com/files/theme/ie6nomore-chrome.jpg' style='border: none;' alt='Get Google Chrome'/></a></div></div></div>
+<![endif]-->
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"></a>
+            <a class="brand" href="<?= WEB_DIR ?>"><?= APP_NAME ?></a>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid container-page container-<?= $ctrlName ?>">
+  	<div class="row-fluid">
+        <div class="offset1 span22">
+
+            <br />
+
+            <div class="well">
+                <ul class="thumbnails">
+                    <li class="span4">
+                        <img src="<?= WEB_DIR ?>img/ico/apple-touch-icon-114-precomposed.png" alt="">
+                    </li>
+                </ul>
+                <h1>THIS IS THE F3 - KITCHEN SINK</h1>
+                <h2>PUT YOUR CONTENTS HERE</h2>
+            </div>
+
+		</div>
+	</div><!--/.row-fluid-->
+		
+</div><!--/.fluid-container-->
+
+<?php if( DEBUG ) : ?>
+    <div class="debug-rendertime"><p class="center"><code><?php echo Base::instance()->format('Page rendered in {0} msecs / Memory usage {1} Kibytes',round(1e3*(microtime(TRUE)-$TIME),2),round(memory_get_usage(TRUE)/1e3,1)); ?></code></p></div>
+<?php endif; ?>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+    _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+    _gaq.push(['_setAccount', '<?= ANALYTICS_CODE ?>]);
+    _gaq.push(['_trackPageview']);
+    (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+</body>
+</html>
